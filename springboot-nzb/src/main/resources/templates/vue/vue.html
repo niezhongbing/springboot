@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8" />
+<title>VUE 测试</title>
+<script th:src="@{/js/vue/vue.min.js}"></script>
+<script th:src="@{/js/vue/vue-resource.js}"></script>
+</head>
+<body>
+	<h1>VUE 访问静态页面测试</h1>
+	<div id="app">
+		<h1>{{ message }}</h1>
+		<img alt="" src="/image/1.jpg"/>
+	</div>
+</body>
+<script type="text/javascript" th:src="@{/js/product/product.js}"></script>
+</html>
