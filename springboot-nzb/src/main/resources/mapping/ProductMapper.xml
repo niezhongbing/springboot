@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itmayiedu.test01.mapping.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.itmayiedu.entity.Product" >
+    <id column="prodId" property="prodid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="imgPic" property="imgpic" jdbcType="VARCHAR" />
+    <collection property=""></collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    prodId, name, price, count, amount, imgPic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where prodId = #{prodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where prodId = #{prodid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.itmayiedu.entity.Product" >
+    insert into product (prodId, name, price, 
+      count, amount, imgPic
+      )
+    values (#{prodid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{count,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, #{imgpic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itmayiedu.entity.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prodid != null" >
+        prodId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="imgpic != null" >
+        imgPic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prodid != null" >
+        #{prodid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="imgpic != null" >
+        #{imgpic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itmayiedu.entity.Product" >
+    update product
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="imgpic != null" >
+        imgPic = #{imgpic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where prodId = #{prodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itmayiedu.entity.Product" >
+    update product
+    set name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      count = #{count,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=INTEGER},
+      imgPic = #{imgpic,jdbcType=VARCHAR}
+    where prodId = #{prodid,jdbcType=INTEGER}
+  </update>
+</mapper>
