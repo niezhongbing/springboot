@@ -46,6 +46,7 @@ public class IndexController {
 	@Value("${name}") //自定义参数
 	private String name;
 	
+	@ResponseBody
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
