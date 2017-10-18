@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8"/>
+    <meta content="IE=dege,chrom=1" http-equiv="X-UA-Compatible"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no"/>
+    <title>Cart</title>
+    <link th:src="@{css/base.css}" rel="stylesheet"/>
+    <link th:src="@{css/checkout.css}" rel="stylesheet"/>
+    <link th:src="@{css/modal.css}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:src="@{layui/css/layui.css}"/>
+    <style type="text/css">
+        .quantity input {
+            width: 40px;
+            padding: 5px 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout">
+      <div id="app">
+       <table border="1">
+	       	<tr>
+	       		<th><input type="radio"/></th>
+	       		<th>商品信息</th>
+	       		<th>商品金额</th>
+	       		<th>商品数量</th>
+	       		<th>商品总金额</th>
+	       		<th>编辑</th>
+	       	</tr>
+	       	<tbody>
+	       		<tr>
+	       			<td>111</td>
+	       		</tr>
+	       	</tbody>
+       </table>
+      </div>
+    </div>
+
+    <script th:src="@{js/vue/vue.min.js}"></script>
+    <script th:src="@{js/vue/vue-resource.js}"></script>
+    <script type="text/javascript" th:src="@{js/cart/cart.js}"></script>
+</body>
+</html>
