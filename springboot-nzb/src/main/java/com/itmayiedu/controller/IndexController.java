@@ -152,4 +152,14 @@ public class IndexController {
 		 Page<UserEntity> select = userService1.findByPage(pageNo, pageSize);
 		return select.toString();
 	}
+	
+	@RequestMapping(value="/vueCart")
+	public String vueCart(){
+		return "vue/vue_cart";
+	}
+	
+	@RequestMapping(value="/vueAddress")
+	public String vueAddress(){
+		return "vue/vue_address";
+	}
 }
