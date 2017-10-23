@@ -16,17 +16,6 @@ public class Product {
 
     private String imgpic;
     
-    private List<Gifts> gifts = new ArrayList<Gifts>();
-    
-
-    public List<Gifts> getGifts() {
-		return gifts;
-	}
-
-	public void setGifts(List<Gifts> gifts) {
-		this.gifts = gifts;
-	}
-
 	public Integer getProdid() {
         return prodid;
     }

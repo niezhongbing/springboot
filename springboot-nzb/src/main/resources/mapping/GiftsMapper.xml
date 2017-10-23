@@ -1,40 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.itmayiedu.test01.mapping.GiftsMapper" >
-  <resultMap id="BaseResultMap" type="com.itmayiedu.entity.Gifts" >
-    <result column="giftsId" property="giftsid" jdbcType="INTEGER" />
-    <result column="proId" property="proid" jdbcType="INTEGER" />
-    <result column="giftsName" property="giftsname" jdbcType="VARCHAR" />
-  </resultMap>
-  <insert id="insert" parameterType="com.itmayiedu.entity.Gifts" >
-    insert into gifts (giftsId, proId, giftsName
-      )
-    values (#{giftsid,jdbcType=INTEGER}, #{proid,jdbcType=INTEGER}, #{giftsname,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.itmayiedu.entity.Gifts" >
-    insert into gifts
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="giftsid != null" >
-        giftsId,
-      </if>
-      <if test="proid != null" >
-        proId,
-      </if>
-      <if test="giftsname != null" >
-        giftsName,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="giftsid != null" >
-        #{giftsid,jdbcType=INTEGER},
-      </if>
-      <if test="proid != null" >
-        #{proid,jdbcType=INTEGER},
-      </if>
-      <if test="giftsname != null" >
-        #{giftsname,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+<mapper namespace="com.itmayiedu.test01.mapping.GiftsMapper">
+	<resultMap id="BaseResultMap" type="com.itmayiedu.entity.Gifts">
+		<result column="giftsId" property="giftsid" jdbcType="INTEGER" />
+		<result column="giftsName" property="giftsname" jdbcType="VARCHAR" />
+		<collection property="productList" ofType="com.itmayiedu.entity.Product">
+			<id column="prodId" property="prodid" jdbcType="INTEGER" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="price" property="price" jdbcType="INTEGER" />
+			<result column="count" property="count" jdbcType="INTEGER" />
+			<result column="amount" property="amount" jdbcType="INTEGER" />
+			<result column="imgPic" property="imgpic" jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+	<insert id="insert" parameterType="com.itmayiedu.entity.Gifts">
+	 <selectKey  resultType="int"  order="AFTER"  keyProperty="giftsid">
+            SELECT LAST_INSERT_ID() 
+        </selectKey>
+		insert into gifts (giftsid,proId, giftsName
+		)
+		values (#{giftsid},#{proid,jdbcType=INTEGER},
+		#{giftsname,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.itmayiedu.entity.Gifts">
+		insert into gifts
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="giftsid != null">
+				giftsId,
+			</if>
+			<if test="proid != null">
+				proId,
+			</if>
+			<if test="giftsname != null">
+				giftsName,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="giftsid != null">
+				#{giftsid,jdbcType=INTEGER},
+			</if>
+			<if test="proid != null">
+				#{proid,jdbcType=INTEGER},
+			</if>
+			<if test="giftsname != null">
+				#{giftsname,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectAllGifts" parameterType="map" resultMap="BaseResultMap">
+		select * from gifts g INNER join product p on g.proId=p.prodId
+	</select>
 </mapper>

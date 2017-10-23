@@ -14,6 +14,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.Page;
+import com.itmayiedu.entity.Gifts;
 import com.itmayiedu.entity.UserEntity;
 import com.itmayiedu.exception.MyException;
 import com.itmayiedu.mapper.UserMapper;
@@ -42,6 +44,7 @@ public class IndexController {
 	
 	@Autowired
 	private	CacheManager cacheManager;
+	
 	
 	@Value("${name}") //自定义参数
 	private String name;
@@ -155,8 +158,23 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/vueCart")
-	public String vueCart(){
+	public String vueCart(@RequestParam Map<String, Object> paramMap){
+		List<Gifts> selectAllGifts = userService1.selectAllGifts(paramMap);
+		for (Gifts gifts : selectAllGifts) {
+			logger.info(gifts.getGiftsname());
+		}
 		return "vue/vue_cart";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/inserGifts")
+	public String inserGifts(){
+		Gifts gifts = new Gifts();
+		gifts.setGiftsname("张三");
+		if(userService1.inserGifts(gifts) > 0)
+			return "添加成功";
+		else 
+			return "添加失败";
 	}
 	
 	@RequestMapping(value="/vueAddress")

@@ -1,5 +1,7 @@
 package com.itmayiedu.entity;
 
+import java.util.List;
+
 public class Gifts {
     private Integer giftsid;
 
@@ -7,7 +9,17 @@ public class Gifts {
 
     private String giftsname;
 
-    public Integer getGiftsid() {
+    private List<Product> productList;
+    
+    public List<Product> getProductList() {
+		return productList;
+	}
+
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
+	}
+
+	public Integer getGiftsid() {
         return giftsid;
     }
 

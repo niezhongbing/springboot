@@ -8,7 +8,6 @@
     <result column="count" property="count" jdbcType="INTEGER" />
     <result column="amount" property="amount" jdbcType="INTEGER" />
     <result column="imgPic" property="imgpic" jdbcType="VARCHAR" />
-    <collection property=""></collection>
   </resultMap>
   <sql id="Base_Column_List" >
     prodId, name, price, count, amount, imgPic

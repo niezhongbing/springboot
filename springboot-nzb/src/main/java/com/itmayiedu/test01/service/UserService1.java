@@ -1,6 +1,7 @@
 package com.itmayiedu.test01.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.itmayiedu.entity.Gifts;
 import com.itmayiedu.entity.UserEntity;
+import com.itmayiedu.test01.mapping.GiftsMapper;
 import com.itmayiedu.test01.mapping.UserMapper1;
 import com.itmayiedu.test02.mapping.UserMapper2;
 
@@ -24,6 +27,9 @@ public class UserService1 {
 	
 	@Autowired
 	private UserMapper2 userMapper2;
+	
+	@Autowired
+	private GiftsMapper giftsMapper;
 	
 	@Transactional
 	 public int addUser1 (UserEntity userEntity){
@@ -79,5 +85,14 @@ public class UserService1 {
 	        int i = 1;
 	        i = 2;
 	        return userMapper1.selectPageHelper();
+	        
 	    }
+	 
+	 public List<Gifts> selectAllGifts(Map<String, Object> map){
+		return giftsMapper.selectAllGifts(map);
+	 }
+	 
+	 public int inserGifts(Gifts gifts){
+		 return giftsMapper.insert(gifts);
+	 }
 }
