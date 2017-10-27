@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>gifts添加界面</title>
+    <base href="nzb"></base>
     <meta charset="utf-8"/>
     <meta content="IE=dege,chrom=1" http-equiv="X-UA-Compatible"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no"/>
@@ -9,6 +10,8 @@
     <link th:src="@{css/checkout.css}" rel="stylesheet"/>
     <link th:src="@{css/modal.css}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" th:src="@{layui/css/layui.css}"/>
+    <script th:src="@{js/vue/vue.min.js}"></script>
+    <script th:src="@{js/vue/vue-resource.js}"></script>
     <style type="text/css">
         .quantity input {
             width: 40px;
@@ -19,28 +22,27 @@
 </head>
 <body>
     <div class="checkout">
-    		<img alt="" src="image/1.jpg"/>
       <div id="app">
+      <iframe th:src="@{/base/top.html}"></iframe>
        <table border="1">
 	       	<tr>
-	       		<th><input type="radio"/></th>
+	       		<th><input type="radio" checked="checked"/></th>
 	       		<th>商品信息</th>
 	       		<th>商品金额</th>
 	       		<th>商品数量</th>
 	       		<th>商品总金额</th>
 	       		<th>编辑</th>
 	       	</tr>
+	       	
 	       	<tbody>
 	       		<tr>
-	       			<td>111</td>
+	       			<td></td>
 	       		</tr>
 	       	</tbody>
        </table>
       </div>
     </div>
 
-    <script th:src="@{js/vue/vue.min.js}"></script>
-    <script th:src="@{js/vue/vue-resource.js}"></script>
     <script type="text/javascript" th:src="@{js/cart/cart.js}"></script>
 </body>
 </html>

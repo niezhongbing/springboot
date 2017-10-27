@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<title>Insert title here</title>
+</head>
+<!--
+            作者：1107530849@qq.com
+            时间：2014-06-24
+            描述：注意此处body标签是没有的(noframes才显示)
+        -->
+<frameset rows="10%,90%">
+	<frame th:src="${top}" name="top" />
+	<frameset cols="15%,*">
+		<frame th:src="${left}" name="left" />
+		<frame th:src="${main}" name="main" />
+	</frameset>
+	<noframes>
+		<body>浏览器不支持frames
+		</body>
+	</noframes>
+</frameset>
+</html>

@@ -19,6 +19,12 @@ public class Gifts {
 		this.productList = productList;
 	}
 
+	@Override
+	public String toString() {
+		return "Gifts [giftsid=" + giftsid + ", proid=" + proid + ", giftsname=" + giftsname + ", productList="
+				+ productList + "]";
+	}
+
 	public Integer getGiftsid() {
         return giftsid;
     }

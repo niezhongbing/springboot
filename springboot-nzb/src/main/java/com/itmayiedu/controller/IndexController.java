@@ -23,11 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.Page;
 import com.itmayiedu.entity.Gifts;
+import com.itmayiedu.entity.ResultEntity;
 import com.itmayiedu.entity.UserEntity;
 import com.itmayiedu.exception.MyException;
 import com.itmayiedu.mapper.UserMapper;
 import com.itmayiedu.test01.service.UserService1;
 import com.itmayiedu.test02.service.UserService2;
+
+import net.sf.json.JSONArray;
 
 @Controller
 public class IndexController {
@@ -49,7 +52,15 @@ public class IndexController {
 	@Value("${name}") //自定义参数
 	private String name;
 	
-	@ResponseBody
+	/*@RequestMapping("/index")
+	public ModelAndView index() {
+		ModelAndView mav =new ModelAndView();
+		mav.addObject("top", "html/top/top.html");
+		mav.addObject("left", "html/left/left.html");
+		mav.addObject("main", "html/main/main.html");
+		mav.setViewName("index");
+		return mav;
+	}*/
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
@@ -158,12 +169,18 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/vueCart")
-	public String vueCart(@RequestParam Map<String, Object> paramMap){
-		List<Gifts> selectAllGifts = userService1.selectAllGifts(paramMap);
-		for (Gifts gifts : selectAllGifts) {
-			logger.info(gifts.getGiftsname());
-		}
+	public String vueCart(){
 		return "vue/vue_cart";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectGifts", method = RequestMethod.GET)
+	public String selectGifts(@RequestParam Map<String, Object> paramMap){
+		ResultEntity<Gifts> resultEntity = new ResultEntity<Gifts>();
+		resultEntity.setMessage("success");
+		resultEntity.setStatus("200");
+		resultEntity.setResult(userService1.selectAllGifts(paramMap));
+		return JSONArray.fromObject(resultEntity).toString();
 	}
 	
 	@ResponseBody
