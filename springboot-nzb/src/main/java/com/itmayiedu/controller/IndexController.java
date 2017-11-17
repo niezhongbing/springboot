@@ -52,19 +52,19 @@ public class IndexController {
 	@Value("${name}") //自定义参数
 	private String name;
 	
-	/*@RequestMapping("/index")
+	@RequestMapping("/index")
 	public ModelAndView index() {
 		ModelAndView mav =new ModelAndView();
 		mav.addObject("top", "html/top/top.html");
 		mav.addObject("left", "html/left/left.html");
 		mav.addObject("main", "html/main/main.html");
-		mav.setViewName("index");
+		mav.setViewName("/index");
 		return mav;
-	}*/
-	@RequestMapping("/index")
+	}
+	/*@RequestMapping("/index")
 	public String index() {
 		return "index";
-	}
+	}*/
 
 	
 	@ResponseBody
